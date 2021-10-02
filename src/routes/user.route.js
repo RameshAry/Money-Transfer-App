@@ -61,6 +61,9 @@ const router = express.Router();
  *           type: boolean
  *           default: true
  */
+router.route('/confirmation').post((req, res) => {
+  userCtrl.register(req, res);
+});
 
 router
   .route('/')
