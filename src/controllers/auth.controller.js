@@ -7,6 +7,7 @@ import logger from '../config/winston';
 import * as CustomerService from '../services/customer.service';
 import path from 'path';
 import Constant from '../utils/constants';
+import exp from 'constants';
 
 /**
  * Returns jwt token if valid email and password is provided
@@ -75,8 +76,4 @@ export function accountConfirmation(req, res, next) {
       }
     })
     .catch((err) => console.log(err));
-}
-
-export function signup(req, res, next) {
-  res.json(req, res);
 }

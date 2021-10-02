@@ -5,7 +5,7 @@
  * @returns {Promise}
  */
 exports.up = function (knex) {
-  return knex.schema.createTable('customers', (table) => {
+  return knex.schema.createTable('users', (table) => {
     table.increments('id').primary().unsigned();
     table.string('first_name').notNullable();
     table.string('middle_name').nullable();
@@ -14,7 +14,7 @@ exports.up = function (knex) {
     table.string('phone').notNullable().unique('cus_phone');
     table.string('password').notNullable();
     table.string('image').nullable();
-    table.timestamp('dob').notNullable();
+    table.string('dob').notNullable();
     table.string('amount').default(0);
     table.string('total-sent').default(0);
     table.string('total_receive').default(0);

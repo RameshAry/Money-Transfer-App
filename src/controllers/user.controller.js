@@ -38,10 +38,14 @@ export function findById(req, res, next) {
  * @param {Function} next
  */
 export function store(req, res, next) {
-  userService
-    .storeUser(req.body)
-    .then((data) => res.status(HttpStatus.CREATED).json({ data }))
-    .catch((err) => next(err));
+  try {
+    userService
+      .storeUser(req.body)
+      .then((data) => res.status(200).json({ data }))
+      .catch((err) => next(err));
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 /**
@@ -70,4 +74,8 @@ export function destroy(req, res, next) {
     .deleteUser(req.params.id)
     .then((data) => res.status(HttpStatus.NO_CONTENT).json({ data }))
     .catch((err) => next(err));
+}
+
+export function register(req, res, next) {
+  res.json({ data: req.body });
 }

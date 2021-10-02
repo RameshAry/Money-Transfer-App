@@ -1,5 +1,4 @@
 import express from 'express';
-import { get } from 'lodash';
 import * as authCtrl from '../controllers/auth.controller';
 
 const router = express.Router();
