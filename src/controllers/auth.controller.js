@@ -5,9 +5,9 @@ import bcrypt from 'bcrypt';
 import Customer from '../models/customer.model';
 import logger from '../config/winston';
 import * as CustomerService from '../services/customer.service';
-import path from "path";
-import Constant from "../utils/constants";
-
+import path from 'path';
+import Constant from '../utils/constants';
+import exp from 'constants';
 
 /**
  * Returns jwt token if valid email and password is provided
@@ -21,7 +21,11 @@ export function login(req, res) {
   Customer.query({ where: { email: email } })
     .fetch({ require: true })
     .then((user) => {
-      if (bcrypt.compareSync(password, user.get('password')) && user.get('is_verified') === 1 && user.get('status') === Constant.users.status.active ) {
+      if (
+        bcrypt.compareSync(password, user.get('password')) &&
+        user.get('is_verified') === 1 &&
+        user.get('status') === Constant.users.status.active
+      ) {
         const token = jwt.sign(
           {
             id: user.get('id'),
@@ -60,7 +64,7 @@ export function login(req, res) {
  * @returns {*}
  */
 
-export function accountConfirmation(req,res,next){
+export function accountConfirmation(req, res, next) {
   const { token } = req.query;
 
   CustomerService.verifyAccount(token)
@@ -72,5 +76,4 @@ export function accountConfirmation(req,res,next){
       }
     })
     .catch((err) => console.log(err));
-
 }

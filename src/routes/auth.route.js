@@ -76,11 +76,9 @@ const router = express.Router();
  *            $ref: '#/definitions/Error'
  */
 
-router.route('/login')
-    .post((req, res) => {
-        authCtrl.login(req, res);
-    });
-
+router.route('/login').post((req, res) => {
+  authCtrl.login(req, res);
+});
 
 /**
  * @swagger
@@ -116,8 +114,8 @@ router.route('/login')
  *            $ref: '#/definitions/Error'
  */
 
-router.route('/confirmation')
-  .get((req, res) => {
-    authCtrl.accountConfirmation(req, res);
-  });
+router.route('/confirmation').get((req, res) => {
+  authCtrl.accountConfirmation(req, res);
+});
+
 export default router;
